@@ -2,13 +2,14 @@ import { SelectChangeEvent } from "@mui/material";
 import useStep from "./useSteps";
 import StepsIndicator from "./StepsIndicator";
 import FormContent from "./FormContent";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { combinedDataSchema, CombinedFormDataType } from "../../yup/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { defaultStudentDetails, stepsDetails } from "../../config";
 import StepsController from "./StepsController";
 const steps = ["Personal", "Academic ", "Course", "Review"];
+
 type MultiFormProps = {
   displayAlert: () => void;
 };
@@ -55,14 +56,15 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
     }
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent,
-  ) => {
-    const name = e.target.name as keyof CombinedFormDataType;
-    const value = e.target.value;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setValue(name, value);
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
+      const name = e.target.name as keyof CombinedFormDataType;
+      const value = e.target.value;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+      setValue(name, value);
+    },
+    [],
+  );
 
   const processFormSubmission: SubmitHandler<CombinedFormDataType> = async (
     data,
@@ -95,12 +97,9 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
       console.error("Error submitting form:", error);
     }
   };
-  const validateAndGoNext = async () => {
+  const validateAndGoNext = useCallback(async () => {
     const currentStep = stepsDetails.find((step) => step.id === activeStep);
     const fieldsToBeValidated = currentStep?.fields;
-    window.console.log("fieldsToBeValidated", fieldsToBeValidated);
-    window.console.log("error", errors);
-    window.console.log("fromData", formData);
     const isValid = await trigger(
       fieldsToBeValidated as Array<keyof CombinedFormDataType>,
     ); // Trigger validation for the current step
@@ -108,7 +107,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
       handleComplete();
       handleNext(); // Proceed to the next step if valid
     }
-  };
+  }, [activeStep, handleComplete, handleNext, trigger]);
   return (
     <div className="w-full ">
       <StepsIndicator activeStep={activeStep} steps={steps} />

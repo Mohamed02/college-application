@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 type StepsType = Array<string>;
 const useStep = function (steps: StepsType) {
   const [activeStep, setActiveStep] = useState(0);
@@ -9,30 +9,32 @@ const useStep = function (steps: StepsType) {
   // const handleStep = (step: number) => () => {
   //     setActiveStep(step);
   // };
-  const handleComplete = () => {
+  const handleComplete = useCallback(() => {
     setCompleted({
       ...completed,
       [activeStep]: true,
     });
     handleNext();
-  };
-  const handleReset = () => {
+  }, [completed, activeStep]);
+  const handleReset = useCallback(() => {
     setActiveStep(0);
     setCompleted({});
-  };
-  const totalSteps = () => {
-    return steps.length;
-  };
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
+  }, []);
 
-  const isLastStep = () => {
+  const totalSteps = useCallback(() => {
+    return steps.length;
+  }, [steps.length]);
+
+  const completedSteps = useCallback(() => {
+    return Object.keys(completed).length;
+  }, [completed]);
+
+  const isLastStep = useCallback(() => {
     return activeStep === totalSteps() - 1;
-  };
-  const allStepsCompleted = () => {
+  }, [activeStep]);
+  const allStepsCompleted = useCallback(() => {
     return completedSteps() === totalSteps();
-  };
+  }, []);
   const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
@@ -43,9 +45,9 @@ const useStep = function (steps: StepsType) {
     console.log("newActiveStep", newActiveStep);
     setActiveStep(newActiveStep);
   };
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  }, []);
   return {
     activeStep,
     completed,
