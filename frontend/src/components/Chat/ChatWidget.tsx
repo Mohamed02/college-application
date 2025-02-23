@@ -1,6 +1,7 @@
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import ChatIcon from "@mui/icons-material/Chat"; // Use MUI icon
+import React from "react";
 type ChatWidgetProps = {
   onClick: () => void;
 };
@@ -16,4 +17,4 @@ const ChatWidget = ({ onClick }: ChatWidgetProps) => {
   );
 };
 
-export default ChatWidget;
+export default React.memo(ChatWidget);

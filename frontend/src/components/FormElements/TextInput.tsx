@@ -22,8 +22,6 @@ const TextInput = function ({
         {...attributes}
         size="small"
         onChange={handleChange}
-        // value={field.name}
-        // id={`document-field-${field.id}`}
         variant="outlined"
         margin="none"
       />

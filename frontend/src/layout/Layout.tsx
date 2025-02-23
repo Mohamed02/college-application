@@ -7,14 +7,17 @@ import { ThemeProvider } from "@emotion/react";
 import { createTheme, CssBaseline } from "@mui/material";
 
 const Layout = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const toggleChatWindow = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const [isChatOpen, setChatOpen] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const toggleChatWindow = useCallback(() => {
+    setChatOpen((prevState) => !prevState);
+  }, []);
+
   const toggleDarkMode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setDarkMode(event.target.checked);
   }, []);
+
   const theme = createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
@@ -31,7 +34,7 @@ const Layout = () => {
         <main className="w-full md:w-3/4 lg:w-5xl p-5  m-auto mt-10">
           <Outlet />
           <ChatWidget onClick={toggleChatWindow} />
-          <ChatWindow open={isOpen} onClose={toggleChatWindow} />
+          <ChatWindow open={isChatOpen} onClose={toggleChatWindow} />
         </main>
       </div>
     </ThemeProvider>

@@ -11,8 +11,9 @@ import StepsController from "./StepsController";
 const steps = ["Personal", "Academic ", "Course", "Review"];
 
 type MultiFormProps = {
-  displayAlert: () => void;
+  displayAlert: (message: string) => void;
 };
+const apiUrl = import.meta.env.VITE_API_URL;
 const MultiForm = function ({ displayAlert }: MultiFormProps) {
   const [formData, setFormData] = useState<CombinedFormDataType>(
     defaultStudentDetails,
@@ -49,7 +50,6 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
     if (draftedDetails) {
       const parsedData = JSON.parse(draftedDetails);
       setFormData(parsedData);
-      // Update form values in react-hook-form using setValue
       Object.keys(parsedData).forEach((key) => {
         setValue(key as keyof CombinedFormDataType, parsedData[key]);
       });
@@ -72,8 +72,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
     console.log(data);
 
     try {
-      window.console.log("data submitted succesfully", data);
-      const response = await fetch("http://localhost:5000/api/application", {
+      const response = await fetch(`${apiUrl}/application`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +84,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
         const result = await response.json();
         console.log("Server response:", result);
 
-        displayAlert();
+        displayAlert("Application Submitted Succssfully");
         setFormData(defaultStudentDetails);
         handleReset();
         reset();
@@ -94,6 +93,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
         console.error("Form submission failed");
       }
     } catch (error) {
+      displayAlert("Application Submission Failed !");
       console.error("Error submitting form:", error);
     }
   };
@@ -102,10 +102,10 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
     const fieldsToBeValidated = currentStep?.fields;
     const isValid = await trigger(
       fieldsToBeValidated as Array<keyof CombinedFormDataType>,
-    ); // Trigger validation for the current step
+    );
     if (isValid) {
       handleComplete();
-      handleNext(); // Proceed to the next step if valid
+      handleNext();
     }
   }, [activeStep, handleComplete, handleNext, trigger]);
   return (

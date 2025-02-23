@@ -19,7 +19,8 @@ type ChatMessageType = {
   text: string;
   isUser: boolean;
 };
-const socket = io("http://localhost:5000"); // WebSocket server URL
+const socketUrl = import.meta.env.VITE_SOCKET_URL;
+const socket = io(socketUrl); // WebSocket server URL
 const ChatWindow = ({ open, onClose }: ChatWindowProps) => {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [input, setInput] = useState<string>("");
@@ -39,7 +40,6 @@ const ChatWindow = ({ open, onClose }: ChatWindowProps) => {
       setLoading(false);
     });
 
-    // Clean up the connection when the component is unmounted
     return () => {
       socket.off("chat_response");
     };
@@ -57,8 +57,8 @@ const ChatWindow = ({ open, onClose }: ChatWindowProps) => {
   };
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default behavior of Enter key
-      handleSend(); // Call the send function
+      e.preventDefault();
+      handleSend();
     }
   };
 
@@ -121,4 +121,4 @@ const ChatWindow = ({ open, onClose }: ChatWindowProps) => {
   );
 };
 
-export default ChatWindow;
+export default React.memo(ChatWindow);

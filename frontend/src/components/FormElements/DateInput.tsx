@@ -15,7 +15,6 @@ const DateInput = function ({
   ...attributes
 }: DateInputProps) {
   const formatDate = (date: Date): string => {
-    window.console.log("value to be formatted", date);
     const dateVal = date;
     const year = dateVal.getFullYear();
     const month = String(dateVal.getMonth() + 1).padStart(2, "0"); // Ensure 2 digits for month
@@ -29,7 +28,6 @@ const DateInput = function ({
         type="date"
         size="small"
         fullWidth
-        // id={`document-field-${field.id}`}
         margin="none"
         label={label}
         variant="outlined"

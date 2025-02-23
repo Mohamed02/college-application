@@ -12,7 +12,7 @@ const chatbot = (io) => {
         setTimeout(()=>{
             const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
             socket.emit(Event.CHAT_RESPONSE, randomResponse);
-        }, 8000)
+        }, 2000)
         });
         
         socket.on(Event.DISCONNECTED, () => {
