@@ -69,8 +69,6 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
   const processFormSubmission: SubmitHandler<CombinedFormDataType> = async (
     data,
   ) => {
-    console.log(data);
-
     try {
       const response = await fetch(`${apiUrl}/application`, {
         method: "POST",
