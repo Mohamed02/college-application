@@ -1,4 +1,5 @@
 import { Step, StepLabel, Stepper } from "@mui/material";
+import React from "react";
 type StepsIndicatorProps = {
   activeStep: number;
   steps: Array<string>;
@@ -15,4 +16,4 @@ const StepsIndicator = function ({ activeStep, steps }: StepsIndicatorProps) {
   );
 };
 
-export default StepsIndicator;
+export default React.memo(StepsIndicator);
