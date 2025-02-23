@@ -50,7 +50,6 @@ const ChatWindow = ({ open, onClose }: ChatWindowProps) => {
         ...prevMessages,
         { text: input, isUser: true },
       ]);
-      window.console.log("messages", messages);
       socket.emit("chat_message", input);
       setInput("");
     }
