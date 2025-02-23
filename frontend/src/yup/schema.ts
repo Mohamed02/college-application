@@ -13,6 +13,7 @@ export const combinedDataSchema = Yup.object().shape({
   qualification: Yup.string().required("Qualification is required"),
   graduationDate: Yup.date().required("Graduation Date is required"),
   grade: Yup.string().required("Grade is required"),
+  markSheet: Yup.string().required("Marksheet is required"),
   schoolAddress: Yup.string().required("School Address is required"),
   firstCoursePreference: Yup.string().required("First preference is required"),
   secondCoursePreference: Yup.string().required(

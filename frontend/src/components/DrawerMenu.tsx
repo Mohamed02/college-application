@@ -12,8 +12,8 @@ const DrawerMenu = ({ open, onClose }: DrawerMenuProps) => {
   const navigate = useNavigate();
   const navItems = [
     { label: "Home", icon: iconMap.home, path: "/" },
-    { label: "Application", icon: iconMap.issues, path: "/application" },
-    { label: "Tutorial", icon: iconMap.report, path: "/tutorial" },
+    { label: "Application", icon: iconMap.report, path: "/application" },
+    { label: "Tutorial", icon: iconMap.analyzer, path: "/tutorial" },
   ];
 
   const handleNavigation = (path: string) => {

@@ -1,10 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 import Layout from "./layout/Layout";
 import Home from "./pages/Home";
-import Application from "./pages/Application";
-import Tutorial from "./pages/Tutorial";
-
+const Application = lazy(() => import("./pages/Application"));
+const Tutorial = lazy(() => import("./pages/Tutorial"));
 function App() {
   return (
     <Routes>

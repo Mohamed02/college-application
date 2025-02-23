@@ -60,9 +60,8 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
   ) => {
     const name = e.target.name as keyof CombinedFormDataType;
     const value = e.target.value;
-    window.console.log("handling change 1234", e.target);
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setValue(name, value); // Update react-hook-form value
+    setValue(name, value);
   };
 
   const processFormSubmission: SubmitHandler<CombinedFormDataType> = async (
@@ -88,22 +87,20 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
         setFormData(defaultStudentDetails);
         handleReset();
         reset();
-        // Handle success, e.g., display a success message
+        localStorage.removeItem("studentDetails");
       } else {
         console.error("Form submission failed");
-        // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Handle network or other errors
     }
   };
   const validateAndGoNext = async () => {
     const currentStep = stepsDetails.find((step) => step.id === activeStep);
     const fieldsToBeValidated = currentStep?.fields;
-
-    // window.console.log("error fieldsToBeValidated", fieldsToBeValidated);
-    // window.console.log("error state", other);
+    window.console.log("fieldsToBeValidated", fieldsToBeValidated);
+    window.console.log("error", errors);
+    window.console.log("fromData", formData);
     const isValid = await trigger(
       fieldsToBeValidated as Array<keyof CombinedFormDataType>,
     ); // Trigger validation for the current step

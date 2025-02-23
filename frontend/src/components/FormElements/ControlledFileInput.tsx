@@ -1,6 +1,6 @@
 import { Control, Controller } from "react-hook-form";
 import { CombinedFormDataType } from "../../yup/schema";
-import TextInput from "./TextInput";
+import FileInput from "./FileInput";
 type ControlledInputProps = {
   name: keyof CombinedFormDataType;
   label: string;
@@ -13,7 +13,7 @@ type ControlledInputProps = {
   helperText?: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
-const ControlledTextInput = function ({
+const ControlledFileInput = function ({
   name,
   control,
   ...attributes
@@ -24,10 +24,10 @@ const ControlledTextInput = function ({
       control={control}
       render={({ field }) => (
         <>
-          <TextInput {...field} {...attributes} />
+          <FileInput {...field} {...attributes} />
         </>
       )}
     />
   );
 };
-export default ControlledTextInput;
+export default ControlledFileInput;

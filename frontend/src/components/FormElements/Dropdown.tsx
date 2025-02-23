@@ -18,11 +18,16 @@ type DropdownProps = {
   ) => void;
 };
 
-const Dropdown = function ({ label, ...attributes }: DropdownProps) {
+const Dropdown = function ({
+  label,
+  helperText,
+  handleChange,
+  ...attributes
+}: DropdownProps) {
   const [dropdownValue, setDropdownValue] = useState(attributes.defaultValue);
   const changeHandler = (event: SelectChangeEvent) => {
     setDropdownValue(event.target.value as string);
-    attributes.handleChange(event);
+    handleChange(event);
   };
   return (
     <div className="w-full h-20">
@@ -39,12 +44,12 @@ const Dropdown = function ({ label, ...attributes }: DropdownProps) {
           onChange={changeHandler}
         >
           {attributes.options.map(({ label, value }) => (
-            <MenuItem value={value}>{label}</MenuItem>
+            <MenuItem key={value} value={value}>
+              {label}
+            </MenuItem>
           ))}
         </Select>
-        <span className="text-red-700 text-xs m-1">
-          {attributes.helperText}
-        </span>
+        <span className="text-red-700 text-xs m-1">{helperText}</span>
       </FormControl>
     </div>
   );

@@ -45,7 +45,7 @@ const NavHeader = ({ darkMode, toggleDarkMode }: NavHeaderProps) => {
             }}
           ></DrawerMenu>
           <Typography variant="h6" component="div" className="grow text-center">
-            Publicis Engineering College
+            ITI
           </Typography>
           <div>
             <Switch

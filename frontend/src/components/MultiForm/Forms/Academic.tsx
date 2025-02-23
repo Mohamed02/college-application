@@ -1,4 +1,3 @@
-import FileInput from "../../FormElements/FileInput";
 import { CombinedFormDataType } from "../../../yup/schema";
 import { Control, FieldErrors } from "react-hook-form";
 import { ChangeEvent } from "react";
@@ -6,6 +5,7 @@ import { SelectChangeEvent } from "@mui/material";
 import ControlledTextInput from "../../FormElements/ControlledTextInput";
 import ControlledDateInput from "../../FormElements/ControlledDateInput";
 import ControlledDropdown from "../../FormElements/ControlledDropdown";
+import ControlledFileInput from "../../FormElements/ControlledFileInput";
 
 type AcademicProps = {
   control: Control<CombinedFormDataType>;
@@ -46,11 +46,10 @@ const Academic = function ({
         label="Graduation Date"
         control={control}
         error={!!errors.graduationDate}
+        value={formData.graduationDate}
         helperText={errors.graduationDate?.message}
         handleChange={handleChange}
       />
-      {/* <TextInput key="Courses Enrolled" label="Courses Enrolled" /> */}
-      {/* <DateInput label="Graduation Date" /> */}
       <ControlledDropdown
         name="grade"
         control={control}
@@ -78,7 +77,16 @@ const Academic = function ({
         control={control}
         handleChange={handleChange}
       />
-      <FileInput label={"Upload Certificate"} />
+      {/* <FileInput name="markSheet" label={"Upload MarkSheet"} /> */}
+      <ControlledFileInput
+        name="markSheet"
+        label="Upload MarkSheet"
+        control={control}
+        error={!!errors.markSheet}
+        helperText={errors.markSheet?.message}
+        handleChange={handleChange}
+        value={formData.markSheet}
+      />
     </div>
   );
 };

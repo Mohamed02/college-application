@@ -5,7 +5,7 @@ import React, {
   ChangeEvent,
   FormEvent,
 } from "react";
-import videoFile from "../assets/screenrecording.mp4";
+// import videoFile from "../assets/screenrecording.mp4";
 // Define the type for a note
 interface Note {
   time: number;
@@ -20,7 +20,6 @@ const VideoPlayer: React.FC = () => {
   const [currentNote, setCurrentNote] = useState<string>("");
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
-  // Example transcript
   const transcript: string[] = [
     "This is the transcript of the video.",
     "This video explains the basics of React.",
@@ -28,14 +27,12 @@ const VideoPlayer: React.FC = () => {
     "The next part demonstrates the usage of the useState hook.",
   ];
 
-  // Update current time when the video is playing
   const handleTimeUpdate = () => {
     if (videoRef.current) {
       setCurrentTime(videoRef.current.currentTime);
     }
   };
 
-  // Handle video play/pause
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -47,19 +44,16 @@ const VideoPlayer: React.FC = () => {
     }
   };
 
-  // Format the time for progress tracking
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  // Handle note input change
   const handleNoteChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCurrentNote(e.target.value);
   };
 
-  // Handle note submission
   const handleNoteSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (currentNote.trim()) {
@@ -102,7 +96,7 @@ const VideoPlayer: React.FC = () => {
           controls={false}
           onClick={togglePlayPause}
         >
-          <source src={videoFile} type="video/mp4" />
+          <source src="" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
