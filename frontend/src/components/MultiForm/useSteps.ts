@@ -42,7 +42,6 @@ const useStep = function (steps: StepsType) {
           // find the first step that has been completed
           steps.findIndex((_, i) => !(i in completed))
         : activeStep + 1;
-    console.log("newActiveStep", newActiveStep);
     setActiveStep(newActiveStep);
   };
   const handleBack = useCallback(() => {
