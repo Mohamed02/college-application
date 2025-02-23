@@ -9,7 +9,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import DrawerMenu from "./DrawerMenu";
 import { Switch } from "@mui/material";
 type NavHeaderProps = {
-  toggleDarkMode: () => void;
+  toggleDarkMode: (event: React.ChangeEvent<HTMLInputElement>) => void;
   darkMode: boolean;
 };
 const NavHeader = ({ darkMode, toggleDarkMode }: NavHeaderProps) => {

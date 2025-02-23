@@ -2,11 +2,10 @@ const { Server } = require('socket.io');
 const botResponses = require('./bot-responses');
 const Event  = require('./events');
 const chatbot = (io) => {
-  // User Connection established
+    
     io.on(Event.CONNECTED, (socket) => {
         console.log('A user connected');
 
-        // MEssage recieved from user
         socket.on(Event.CHAT_MESSAGE, (message) => {
         console.log('Received message:', message);
         socket.emit(Event.TYPING);
@@ -15,8 +14,7 @@ const chatbot = (io) => {
             socket.emit(Event.CHAT_RESPONSE, randomResponse);
         }, 8000)
         });
-    
-        // Connection disconnnected 
+        
         socket.on(Event.DISCONNECTED, () => {
             console.log(' User disconnected');
         });

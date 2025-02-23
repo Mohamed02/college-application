@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import ChatWidget from "../components/Chat/ChatWidget";
 import NavHeader from "../components/NavHeader";
 import { Outlet } from "react-router-dom";
@@ -12,7 +12,7 @@ const Layout = () => {
   const toggleChatWindow = () => {
     setIsOpen((prevState) => !prevState);
   };
-  const toggleDarkMode = useCallback((event) => {
+  const toggleDarkMode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setDarkMode(event.target.checked);
   }, []);
   const theme = createTheme({
