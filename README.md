@@ -14,14 +14,14 @@ This is a college application portal where students can apply for courses. The a
 5. **Responseve**: The app is supported on Desktop, Mobile and Tablets
 6. **Acessbility**: The app is Accessible.
 
-## Tech Stack and Libraries Used
+## Tech Stack, Tools and Libraries Used
 - **React**: Used for creating UI components.
 - **Tailwind CSS**: For styling the application.
 - **Material UI**: UI component library used for building the interface.
 - **React Hook Form & Yup**: For form handling and validation.
-- **Vite**: Build tool used to bundle and optimize the app.
 - **Socket.io**: Used for real-time communication in the chatbot.
 - **Express**: Backend API server to handle requests from the front end.
+- **ESlint & Prettier**: For Linting and Formatting
 
 ## Here is a screenshot of the application:
 
@@ -58,7 +58,8 @@ Once both servers are running, the frontend will be available at `http://localho
 - **I18n**: Support for I18n
 - **Scalability**: Improvise Scalability
 - **Chatbot Integration**: Integration of chatbot
-- **Bug & featurs**: Handle Open Bugs and features
+- **Bug & features**: Handle Open Bugs and features
+- **Test Script**: Unit Test scripts
 
 # Components Documentation
 
