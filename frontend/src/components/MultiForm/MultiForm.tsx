@@ -96,7 +96,7 @@ const MultiForm = function () {
         setFormData(defaultStudentDetails);
         handleReset();
         reset();
-        // localStorage.removeItem("studentDetails");
+        localStorage.removeItem("studentDetails");
       } else {
         console.error("Form submission failed");
       }
