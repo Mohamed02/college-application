@@ -31,7 +31,12 @@ const StepsController = function ({
       </Button>
       <div className="flex">
         {!isLastStep() && (
-          <Button variant="outlined" onClick={validateAndGoNext} sx={{ mr: 1 }}>
+          <Button
+            variant="contained"
+            onClick={validateAndGoNext}
+            color="primary"
+            sx={{ mr: 1 }}
+          >
             Next
           </Button>
         )}
@@ -41,7 +46,7 @@ const StepsController = function ({
         {activeStep === totalSteps() - 1 &&
           completedSteps() === totalSteps() - 1 && (
             <div className="ml-2">
-              <Button type="submit" variant="outlined">
+              <Button type="submit" color="primary" variant="contained">
                 Submit
               </Button>
             </div>

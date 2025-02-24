@@ -8,13 +8,22 @@ import { combinedDataSchema, CombinedFormDataType } from "../../yup/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { defaultStudentDetails, stepsDetails } from "../../config";
 import StepsController from "./StepsController";
+import AlertBox from "../../pages/AlertBox";
 const steps = ["Personal", "Academic ", "Course", "Review"];
 
-type MultiFormProps = {
-  displayAlert: (message: string) => void;
-};
 const apiUrl = import.meta.env.VITE_API_URL;
-const MultiForm = function ({ displayAlert }: MultiFormProps) {
+const MultiForm = function () {
+  const [showAlertBox, setShowAlertBox] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+
+  const displayAlert = useCallback((message: string) => {
+    setShowAlertBox(true);
+    setAlertMessage(message);
+  }, []);
+  const handleAlertClose = useCallback(() => {
+    setShowAlertBox(false);
+  }, []);
+
   const [formData, setFormData] = useState<CombinedFormDataType>(
     defaultStudentDetails,
   );
@@ -69,6 +78,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
   const processFormSubmission: SubmitHandler<CombinedFormDataType> = async (
     data,
   ) => {
+    console.log("Submission");
     try {
       const response = await fetch(`${apiUrl}/application`, {
         method: "POST",
@@ -86,7 +96,7 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
         setFormData(defaultStudentDetails);
         handleReset();
         reset();
-        localStorage.removeItem("studentDetails");
+        // localStorage.removeItem("studentDetails");
       } else {
         console.error("Form submission failed");
       }
@@ -129,6 +139,13 @@ const MultiForm = function ({ displayAlert }: MultiFormProps) {
           />
         </form>
       </div>
+      {showAlertBox && (
+        <AlertBox
+          handleAlertClose={handleAlertClose}
+          showAlertBox={showAlertBox}
+          message={alertMessage}
+        />
+      )}
     </div>
   );
 };

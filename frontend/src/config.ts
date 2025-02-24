@@ -13,7 +13,6 @@ export const stepsDetails = [
       "graduationDate",
       "grade",
       "schoolAddress",
-      "marksheet",
     ],
   },
   {
@@ -39,7 +38,6 @@ export const defaultStudentDetails = {
   graduationDate: new Date(),
   grade: "",
   schoolAddress: "",
-  markSheet: "",
   firstCoursePreference: "",
   secondCoursePreference: "",
   thirdCoursePreference: "",

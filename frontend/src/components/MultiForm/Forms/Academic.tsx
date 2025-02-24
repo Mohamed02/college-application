@@ -5,7 +5,7 @@ import { SelectChangeEvent } from "@mui/material";
 import ControlledTextInput from "../../FormElements/ControlledTextInput";
 import ControlledDateInput from "../../FormElements/ControlledDateInput";
 import ControlledDropdown from "../../FormElements/ControlledDropdown";
-import ControlledFileInput from "../../FormElements/ControlledFileInput";
+import FileInput from "../../FormElements/FileInput";
 
 type AcademicProps = {
   control: Control<CombinedFormDataType>;
@@ -77,16 +77,7 @@ const Academic = function ({
         control={control}
         handleChange={handleChange}
       />
-      {/* <FileInput name="markSheet" label={"Upload MarkSheet"} /> */}
-      <ControlledFileInput
-        name="markSheet"
-        label="Upload MarkSheet"
-        control={control}
-        error={!!errors.markSheet}
-        helperText={errors.markSheet?.message}
-        handleChange={handleChange}
-        value={formData.markSheet}
-      />
+      <FileInput name="markSheet" label={"Upload MarkSheet"} />
     </div>
   );
 };
