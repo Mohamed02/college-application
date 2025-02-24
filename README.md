@@ -267,6 +267,48 @@ const App = () => {
   );
 };
 ```
+
+# NavHeader Component
+
+## Description
+The `NavHeader` component is a navigation header that contains the app's main menu, a dark mode toggle switch, and an account icon button. It features a `DrawerMenu` that can be opened and closed via a menu button. It also includes a dark mode toggle switch that allows users to switch between light and dark themes.
+
+## Props
+- **toggleDarkMode** (`function`): A callback function that handles the toggling of dark mode when the switch is interacted with. It receives an event object from the `Switch` component.
+- **darkMode** (`boolean`): A boolean value that represents the current state of dark mode. It is used to control whether dark mode is enabled or not.
+
+## Internal Components
+- **AppBar**: A Material-UI component that serves as the container for the navigation header.
+- **Toolbar**: A Material-UI component used to arrange and align the header contents.
+- **MenuIcon**: A Material-UI icon button that triggers the opening of the navigation drawer when clicked.
+- **DrawerMenu**: A custom component used to render a slide-in menu (drawer) when the menu button is clicked.
+- **Typography**: A Material-UI component that displays the app's name or title (`ITI` in this case).
+- **Switch**: A Material-UI component used to toggle between dark mode and light mode.
+- **IconButton**: A Material-UI component that wraps the account icon and allows the user to interact with their account settings.
+
+## Usage
+
+```jsx
+import React, { useState } from "react";
+import NavHeader from "./NavHeader";
+
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDarkMode(event.target.checked);
+  };
+
+  return (
+    <div>
+      <NavHeader darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      {/* Other content of the application */}
+    </div>
+  );
+};
+
+export default App;
+```
 ## Contributing
 Feel free to fork the repository and submit issues or pull requests for improvements or bug fixes.
 
