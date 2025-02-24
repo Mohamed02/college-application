@@ -17,7 +17,11 @@ This is a college application portal where students can apply for courses. The a
 - **Socket.io**: Used for real-time communication in the chatbot.
 - **Express**: Backend API server to handle requests from the front end.
 
-## How to Start the Application
+## Here is a screenshot of the application:
+
+[See the screenshot here](./screenshots/Form-1.png)
+
+## Application Setup
 
 ### 1. Clone or Download the Repository
 You can either clone the repository using Git or download the ZIP file.
