@@ -152,7 +152,8 @@ const App = () => {
       <MultiForm />
     </div>
   );
-};
+} 
+```
 
 # AlertBox Component
 
@@ -192,6 +193,7 @@ const ExampleComponent = () => {
     </div>
   );
 };
+```
 
 # ChatWidget Component
 
@@ -225,6 +227,46 @@ const App = () => {
 };
 ```
 
+# AlertBox Component
+
+## Description
+The `AlertBox` component displays an informational message to the user in a Material-UI `Snackbar` that auto-hides after a specified duration. It uses the `Alert` component from Material-UI to show messages like success, error, or info in a styled box.
+
+## Props
+- **showAlertBox** (`boolean`): A boolean value that controls whether the alert box is visible or not.
+- **handleAlertClose** (`function`): A callback function that is triggered when the alert box is closed.
+- **message** (`string`): The message to be displayed inside the alert box.
+
+## Internal Components
+- **Snackbar**: A Material-UI component that wraps the `Alert` and controls its visibility. It provides features like auto-hide and positioning.
+- **Alert**: A Material-UI component used to display the message, and it can be customized to have different severity types (e.g., info, error, success).
+
+## Usage
+
+```jsx
+import React, { useState } from 'react';
+import AlertBox from './AlertBox';
+
+const App = () => {
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleAlertClose = () => {
+    setShowAlert(false);
+  };
+
+  return (
+    <div>
+      <button onClick={() => setShowAlert(true)}>Show Alert</button>
+
+      <AlertBox
+        showAlertBox={showAlert}
+        handleAlertClose={handleAlertClose}
+        message="This is an informational alert!"
+      />
+    </div>
+  );
+};
+```
 ## Contributing
 Feel free to fork the repository and submit issues or pull requests for improvements or bug fixes.
 
